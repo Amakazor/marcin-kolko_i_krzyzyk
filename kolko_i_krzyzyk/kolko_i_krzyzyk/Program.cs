@@ -7,23 +7,23 @@ namespace kolko_i_krzyzyk
         static void Render(char[,] fields_array)
         {
             Console.Write(" #");
-            for(int col = 0; col < 3; col++)
+            for (int col = 0; col < 3; col++)
             {
                 Console.Write(col+1 + "#");
             }
             Console.Write("\n");
 
-            for(int row = 0; row < 3; row++)
+            for (int row = 0; row < 3; row++)
             {
                 Console.Write("##");
-                for(int col = 0; col < 3; col++)
+                for (int col = 0; col < 3; col++)
                 {
                     Console.Write("##");
                 }
                 Console.Write("\n");
 
                 Console.Write(row+1 + "#");
-                for(int col = 0; col < 3; col++)
+                for (int col = 0; col < 3; col++)
                 {
                     Console.Write(fields_array[row, col] + "#");
                 }
@@ -47,15 +47,15 @@ namespace kolko_i_krzyzyk
 
             do
             {
-                if(bad_input) Console.WriteLine("Bad input!");
+                if (bad_input) Console.WriteLine("Bad input!");
                 Console.WriteLine(message);
 
                 input = Console.ReadLine();
                 parsed = int.TryParse(input, out input_parsed);
                 
-                if(parsed)
+                if (parsed)
                 {
-                    if(input_parsed <= max && input_parsed >= min)
+                    if (input_parsed <= max && input_parsed >= min)
                     {
                         bad_input = false;
                     }
@@ -87,11 +87,11 @@ namespace kolko_i_krzyzyk
             }
 
             //pionowo
-            for(int col = 0; col < 3; col++)
+            for (int col = 0; col < 3; col++)
             {
                 int consecutive = 0;
 
-                for(int row = 0; row < 3; row++)
+                for (int row = 0; row < 3; row++)
                 {
                     if (fields_array[row, col] == symbol)
                     {
@@ -205,6 +205,9 @@ namespace kolko_i_krzyzyk
                     else current_player = 1;
                 }
             }
+
+            Console.Clear();
+            Render(fields);
 
             switch (state)
             {
