@@ -75,8 +75,11 @@ namespace kolko_i_krzyzyk
             char empty_symbol       = ' ';
 
             int  size               = 3;
-
             char[,] fields          = new char[size, size];
+
+            int current_player = 1;
+
+
         }
     }
 }
