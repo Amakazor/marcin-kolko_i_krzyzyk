@@ -7,23 +7,23 @@ namespace kolko_i_krzyzyk
         static void Render(char[,] fields_array)
         {
             Console.Write(" #");
-            for (int col = 0; col < fields_array.GetLength(1); col++)
+            for(int col = 0; col < 3; col++)
             {
                 Console.Write(col + "#");
             }
             Console.Write("\n");
 
-            for (int row = 0; row < fields_array.GetLength(0); row++)
+            for(int row = 0; row < 3; row++)
             {
                 Console.Write("##");
-                for (int col = 0; col < fields_array.GetLength(1); col++)
+                for(int col = 0; col < 3; col++)
                 {
                     Console.Write("##");
                 }
                 Console.Write("\n");
 
                 Console.Write(row + "#");
-                for (int col = 0; col < fields_array.GetLength(1); col++)
+                for(int col = 0; col < 3; col++)
                 {
                     Console.Write(fields_array[row, col] + "#");
                 }
@@ -31,7 +31,7 @@ namespace kolko_i_krzyzyk
             }
 
             Console.Write("##");
-            for (int col = 0; col < fields_array.GetLength(1); col++)
+            for (int col = 0; col < 3; col++)
             {
                 Console.Write("##");
             }
@@ -55,7 +55,7 @@ namespace kolko_i_krzyzyk
                 
                 if(parsed)
                 {
-                    if (input_parsed <= max && input_parsed >= min)
+                    if(input_parsed <= max && input_parsed >= min)
                     {
                         bad_input = false;
                     }
@@ -68,14 +68,56 @@ namespace kolko_i_krzyzyk
             return input_parsed;
         }
 
+        static bool CheckIfWon(char[,] fields_array, char symbol)
+        {
+            //poziomo
+            for (int row = 0; row < 3; row++)
+            {
+                int consecutive = 0;
+
+                for (int col = 0; col < 3; col++)
+                {
+                    if (fields_array[row, col] == symbol)
+                    {
+                        consecutive++;
+                        if (consecutive == 3) return true;
+                    }
+                    else consecutive = 0;
+                }
+            }
+
+            //pionowo
+            for(int col = 0; col < 3; col++)
+            {
+                int consecutive = 0;
+
+                for(int row = 0; row < 3; row++)
+                {
+                    if (fields_array[row, col] == symbol)
+                    {
+                        consecutive++;
+                        if (consecutive == 3) return true;
+                    }
+                    else consecutive = 0;
+                }
+            }
+
+            //ukośnie \
+            if (fields_array[0, 0] == symbol && fields_array[1, 1] == symbol && fields_array[2, 2] == symbol) return true;
+
+            //ukośnie /
+            if (fields_array[0, 2] == symbol && fields_array[1, 1] == symbol && fields_array[2, 0] == symbol) return true;
+
+            return false;
+        }
+
         static void Main(string[] args)
         {
             char player_one_symbol  = 'O';
             char player_two_symbol  = 'X';
             char empty_symbol       = ' ';
 
-            int  size               = 3;
-            char[,] fields          = new char[size, size];
+            char[,] fields          = new char[3, 3];
 
             int current_player = 1;
 
