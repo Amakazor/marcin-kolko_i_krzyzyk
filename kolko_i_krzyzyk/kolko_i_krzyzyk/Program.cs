@@ -9,7 +9,7 @@ namespace kolko_i_krzyzyk
             Console.Write(" #");
             for(int col = 0; col < 3; col++)
             {
-                Console.Write(col + "#");
+                Console.Write(col+1 + "#");
             }
             Console.Write("\n");
 
@@ -22,7 +22,7 @@ namespace kolko_i_krzyzyk
                 }
                 Console.Write("\n");
 
-                Console.Write(row + "#");
+                Console.Write(row+1 + "#");
                 for(int col = 0; col < 3; col++)
                 {
                     Console.Write(fields_array[row, col] + "#");
@@ -111,6 +111,19 @@ namespace kolko_i_krzyzyk
             return false;
         }
 
+        static bool CheckIfFull(char[,] fields_array, char symbol)
+        {
+            for (int row = 0; row < 3; row++)
+            {
+                for (int col = 0; col < 3; col++)
+                {
+                    if (fields_array[row, col] == symbol) return false;
+                }
+            }
+
+            return true;
+        }
+
         static void Main(string[] args)
         {
             char player_one_symbol  = 'O';
@@ -121,7 +134,7 @@ namespace kolko_i_krzyzyk
 
             int current_player = 1;
 
-
+            
         }
     }
 }
